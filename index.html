@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diego Oberto | Portfolio</title>
+    <meta
+      name="description"
+      content="A colorful portfolio studio for projects, personal story, process, and contact details."
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1117'/%3E%3Cpath d='M16 45V17h17.5c8 0 13.3 4.7 13.3 12s-5.3 12-13.3 12H24v4h-8Zm8-11h8.8c3.5 0 5.6-1.9 5.6-5s-2.1-5-5.6-5H24v10Z' fill='%23f4f1ea'/%3E%3Crect x='47' y='41' width='7' height='7' rx='2' fill='%23a68a64'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="portfolio-shell" aria-label="Portfolio studio">
+      <section class="studio-stage">
+        <section class="view active" id="intro" data-view="intro" aria-labelledby="intro-title">
+          <div class="intro-layout">
+            <div class="intro-copy">
+              <h1 id="intro-title">Diego Oberto</h1>
+              <p>
+                I build clean, thoughtful digital projects with a focus on simplicity, function, and detail.
+              </p>
+              <div class="button-row">
+                <button class="button primary" type="button" data-view-button="work">Work</button>
+                <button class="button ghost" type="button" data-view-button="story">About</button>
+              </div>
+            </div>
+
+            <div class="intro-portrait-card" aria-label="Profile photo placeholder">
+              <div class="intro-photo">
+                <span>Your photo</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="work" data-view="work" aria-labelledby="work-title">
+          <div class="workspace-grid">
+            <div class="panel project-browser">
+              <p class="eyebrow">Selected work</p>
+              <h2 id="work-title">Choose a project tile.</h2>
+              <div class="project-list" data-project-list></div>
+            </div>
+
+            <article class="panel project-detail" data-project-detail>
+              <div class="project-visual" data-project-visual>
+                <span>Screenshot slot</span>
+              </div>
+              <div class="project-detail-copy">
+                <p class="eyebrow" data-project-category>Web</p>
+                <h3 data-project-title>Project One</h3>
+                <p data-project-summary></p>
+                <div class="tag-row" data-project-tags></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="story" data-view="story" aria-labelledby="story-title">
+          <div class="story-grid">
+            <div class="panel story-lead">
+              <p class="eyebrow">About</p>
+              <h2 id="story-title">A place for the version of you that does not fit on a resume.</h2>
+              <p>
+                Add the real details later: where your curiosity started, what kind of problems you like,
+                and what you want people to notice in your work. The goal is warm and specific, not overly
+                formal.
+              </p>
+            </div>
+            <div class="principle-grid">
+              <article class="panel principle-card">
+                <span>Care</span>
+                <p>I pay attention to whether the interface feels understandable to a real person.</p>
+              </article>
+              <article class="panel principle-card">
+                <span>Craft</span>
+                <p>I like the final details: words, spacing, states, motion, and rhythm.</p>
+              </article>
+              <article class="panel principle-card">
+                <span>Growth</span>
+                <p>I want each project to teach me something useful for the next one.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="process" data-view="process" aria-labelledby="process-title">
+          <div class="panel process-panel">
+            <p class="eyebrow">Process</p>
+            <h2 id="process-title">From rough idea to something someone can actually use.</h2>
+            <div class="process-map">
+              <article>
+                <span>Discover</span>
+                <p>Find the audience, the problem, and what success should feel like.</p>
+              </article>
+              <article>
+                <span>Shape</span>
+                <p>Sketch the flow, choose the visual tone, and make the tradeoffs visible.</p>
+              </article>
+              <article>
+                <span>Build</span>
+                <p>Turn the idea into a responsive interface with clear behavior.</p>
+              </article>
+              <article>
+                <span>Reflect</span>
+                <p>Explain what changed, what worked, and what the next version would improve.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="contact" data-view="contact" aria-labelledby="contact-title">
+          <div class="contact-layout">
+            <div class="panel contact-panel">
+              <p class="eyebrow">Contact</p>
+              <h2 id="contact-title">Ready for real links when you are.</h2>
+              <p>
+                Swap these placeholders with your email, GitHub, LinkedIn, resume, or any project channels
+                you want visitors to use.
+              </p>
+              <div class="contact-actions">
+                <a class="contact-link" href="mailto:your.email@example.com">your.email@example.com</a>
+                <button class="button ghost" type="button" data-copy-email>Copy email</button>
+              </div>
+            </div>
+            <div class="panel note-panel">
+              <span>Next edit</span>
+              <p>Drop in your photos and real project names, then this starts feeling like yours fast.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <nav class="dock" aria-label="Portfolio views">
+        <button class="dock-item active" type="button" data-view-button="intro" aria-label="Intro">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.2 12 5l8 6.2V20h-6v-5h-4v5H4v-8.8Zm2 .9V18h2v-5h8v5h2v-5.9l-6-4.7-6 4.7Z" /></svg>
+          <span>Intro</span>
+        </button>
+        <button class="dock-item" type="button" data-view-button="work" aria-label="Work">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h6v6H5V5Zm8 0h6v6h-6V5ZM5 13h6v6H5v-6Zm8 0h6v6h-6v-6Zm-6-6v2h2V7H7Zm8 0v2h2V7h-2Zm-8 8v2h2v-2H7Zm8 0v2h2v-2h-2Z" /></svg>
+          <span>Work</span>
+        </button>
+        <button class="dock-item" type="button" data-view-button="story" aria-label="Story">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm0 2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11V7a1 1 0 0 0-1-1H7Zm2 3h7v2H9V9Zm0 4h6v2H9v-2Z" /></svg>
+          <span>Story</span>
+        </button>
+        <button class="dock-item" type="button" data-view-button="process" aria-label="Process">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7a3 3 0 1 1 5.8 1H14a4 4 0 0 1 0 8h-1.8a3 3 0 1 1 0-2H14a2 2 0 0 0 0-4h-2.2A3 3 0 0 1 6 7Zm3-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0 10a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" /></svg>
+          <span>Process</span>
+        </button>
+        <button class="dock-item" type="button" data-view-button="contact" aria-label="Contact">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4V6Zm2 2v.4l6 4 6-4V8H6Zm12 2.8-6 4-6-4V16h12v-5.2Z" /></svg>
+          <span>Contact</span>
+        </button>
+      </nav>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
