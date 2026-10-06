@@ -7,7 +7,7 @@ A colorful static portfolio studio for projects, personal story, process, and co
 - Update `Diego Oberto` in `index.html` if you want to change the displayed name later.
 - Update the intro and about copy in `index.html`.
 - Add your project details in the `projects` array inside `app.js`.
-- Replace the portrait and project placeholder blocks with real images when you have them.
+- Replace or update `assets/headshot.png` when you want to change the home page photo.
 - Update `your.email@example.com` in both `index.html` and `app.js`.
 
 ## Run locally
