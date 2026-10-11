@@ -1,5 +1,35 @@
 const projects = [
   {
+    title: "SPOTlight",
+    mark: "SL",
+    category: "KnightHacks IX",
+    summary:
+      "Robotic inspection intelligence dashboard that turns SPOT robot inspection data into actionable insights for power plant operators. It includes interactive 3D mission playback, inspection risk heatmaps, sensor trend analysis, prioritized findings, and evidence-backed reports. I also integrated Databricks SQL analytics and Spot Talk, an AI assistant with citations and direct navigation to facility locations, plus an experimental logistic regression pipeline for transparent inspection failure-risk estimates.",
+    tags: [
+      "KnightHacks",
+      "React",
+      "Three.js",
+      "Node.js",
+      "Databricks",
+      "Python",
+      "scikit-learn",
+      "SQL",
+      "Vercel",
+    ],
+    color: "#bdf66b",
+    image: "./assets/spotlight.png",
+    links: [
+      {
+        label: "View GitHub repo",
+        url: "https://github.com/doberto6/SpotLight",
+      },
+      {
+        label: "View Devpost",
+        url: "https://devpost.com/software/spotlight-d5tr9l",
+      },
+    ],
+  },
+  {
     title: "SIGN",
     mark: "SG",
     category: "ShellHacks 2026",
@@ -225,6 +255,16 @@ function renderDetail(item, detail) {
         ${item.tags.map((tag) => `<span>${tag}</span>`).join("")}
       </div>
       ${
+        item.links
+          ? `<div class="detail-actions">${item.links
+              .map(
+                (link) =>
+                  `<a class="detail-link" href="${link.url}" target="_blank" rel="noreferrer">${link.label}</a>`,
+              )
+              .join("")}</div>`
+          : ""
+      }
+      ${
         item.link
           ? `<a class="detail-link" href="${item.link}" target="_blank" rel="noreferrer">${item.linkLabel || "View project"}</a>`
           : ""
@@ -262,7 +302,7 @@ viewButtons.forEach((button) => {
 });
 
 copyEmailButton.addEventListener("click", async () => {
-  const email = "your.email@example.com";
+  const email = "prodiegooberto@gmail.com";
 
   try {
     await navigator.clipboard.writeText(email);

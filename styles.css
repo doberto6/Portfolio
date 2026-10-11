@@ -199,6 +199,26 @@ h3 {
   margin-top: 1.4rem;
 }
 
+.intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.2rem;
+}
+
+.intro-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 0.78rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.64);
+  color: #303846;
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
 .button {
   min-height: 46px;
   padding: 0 1rem;
@@ -494,6 +514,12 @@ h3 {
   font-weight: 850;
 }
 
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
 .tag-row {
   display: flex;
   flex-wrap: wrap;
@@ -600,6 +626,12 @@ h3 {
   color: var(--paper);
   font-weight: 850;
   overflow-wrap: anywhere;
+}
+
+.contact-link.secondary {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--ink);
 }
 
 .note-panel {
