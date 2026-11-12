@@ -2,11 +2,12 @@ const projects = [
   {
     title: "SPOTlight",
     mark: "SL",
-    category: "KnightHacks IX",
+    category: "KnightHacks IX Winner",
     summary:
       "Robotic inspection intelligence dashboard that turns SPOT robot inspection data into actionable insights for power plant operators. It includes interactive 3D mission playback, inspection risk heatmaps, sensor trend analysis, prioritized findings, and evidence-backed reports. I also integrated Databricks SQL analytics and Spot Talk, an AI assistant with citations and direct navigation to facility locations, plus an experimental logistic regression pipeline for transparent inspection failure-risk estimates.",
     tags: [
-      "KnightHacks",
+      "Hackathon winner",
+      "KnightHacks IX",
       "React",
       "Three.js",
       "Node.js",
@@ -68,6 +69,19 @@ const projects = [
 ];
 
 const workItems = [
+  {
+    title: "Pinterest",
+    mark: "P",
+    category: "Experience",
+    position: "Incoming Software Engineer",
+    duration: "Incoming",
+    location: "Seattle, Washington",
+    summary:
+      "Incoming software engineer at Pinterest in Seattle, Washington. More details about the team and work will be added once the role begins.",
+    tags: ["Software engineering", "Incoming", "Pinterest"],
+    color: "#e60023",
+    image: "./assets/pinterest.png",
+  },
   {
     title: "JPMorganChase",
     mark: "JPMC",
