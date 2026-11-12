@@ -95,47 +95,89 @@
         </section>
 
         <section class="view" id="story" data-view="story" aria-labelledby="story-title">
-          <div class="journey-layout">
-            <aside class="journey-intro">
-              <p class="eyebrow">Journey</p>
-              <h2 id="story-title">How I got here.</h2>
+          <div class="about-layout">
+            <header class="about-heading">
+              <p class="eyebrow">About me</p>
+              <h2 id="story-title">A little more than the resume.</h2>
               <p>
-                Use this space like a short personal log. Not a formal bio, not a list of traits.
-                Just the moments that shaped how you think, build, and keep moving.
+                I am a builder, a lifelong learner, and someone who cares deeply about the people
+                around me. My family is from Venezuela, and that background shapes how I approach
+                community, ambition, and the work I take on.
               </p>
-            </aside>
+            </header>
 
-            <div class="journey-track" aria-label="Personal journey">
-              <article class="journey-entry">
-                <span class="journey-marker">01</span>
-                <div>
-                  <h3>Where it started</h3>
-                  <p>
-                    Write about the first thing that pulled you toward building, design, technology,
-                    business, or problem-solving.
-                  </p>
+            <div class="about-content">
+              <div class="about-carousel" data-about-carousel>
+                <div class="about-slides" aria-live="polite">
+                  <article class="about-slide active" data-about-slide>
+                    <div class="about-photo-placeholder" aria-label="Photo placeholder for two paths">
+                      <span>Photo 01</span>
+                      <strong>Mechanical engineering or computer science</strong>
+                    </div>
+                    <div class="about-slide-copy">
+                      <span class="about-slide-number">01 / 03</span>
+                      <h3>Two paths</h3>
+                      <p>
+                        For a while, I was stuck between mechanical engineering and computer science.
+                        I liked the idea of building physical systems, but I had not yet found the kind
+                        of work that fully clicked for me.
+                      </p>
+                    </div>
+                  </article>
+
+                  <article class="about-slide" data-about-slide hidden>
+                    <div class="about-photo-placeholder" aria-label="Photo placeholder for discovering computer science">
+                      <span>Photo 02</span>
+                      <strong>My first computer science course</strong>
+                    </div>
+                    <div class="about-slide-copy">
+                      <span class="about-slide-number">02 / 03</span>
+                      <h3>The class that changed everything</h3>
+                      <p>
+                        Then I took my first computer science course. I fell in love with the mix of
+                        logic, creativity, and the ability to turn an idea into something people could
+                        actually use. That course made the choice clear.
+                      </p>
+                    </div>
+                  </article>
+
+                  <article class="about-slide" data-about-slide hidden>
+                    <div class="about-photo-placeholder" aria-label="Photo placeholder for life outside coding">
+                      <span>Photo 03</span>
+                      <strong>Life outside the screen</strong>
+                    </div>
+                    <div class="about-slide-copy">
+                      <span class="about-slide-number">03 / 03</span>
+                      <h3>Beyond the screen</h3>
+                      <p>
+                        When I am not building, I am usually eating good food, spending time with
+                        friends and family, playing video games, watching anime, training BJJ, playing
+                        pickleball, or powerlifting.
+                      </p>
+                    </div>
+                  </article>
                 </div>
-              </article>
-              <article class="journey-entry">
-                <span class="journey-marker">02</span>
-                <div>
-                  <h3>What changed</h3>
-                  <p>
-                    Talk about a class, project, challenge, job, or personal moment that made the work
-                    feel real.
-                  </p>
+
+                <div class="about-carousel-controls">
+                  <div class="about-carousel-buttons">
+                    <button class="carousel-arrow" type="button" data-about-prev aria-label="Previous story slide">&#8592;</button>
+                    <button class="carousel-arrow" type="button" data-about-next aria-label="Next story slide">&#8594;</button>
+                  </div>
+                  <div class="about-dots" aria-label="Story slides">
+                    <button class="about-dot active" type="button" data-about-dot="0" aria-label="Show slide 1" aria-current="true"></button>
+                    <button class="about-dot" type="button" data-about-dot="1" aria-label="Show slide 2" aria-current="false"></button>
+                    <button class="about-dot" type="button" data-about-dot="2" aria-label="Show slide 3" aria-current="false"></button>
+                  </div>
                 </div>
-              </article>
-              <article class="journey-entry">
-                <span class="journey-marker">03</span>
-                <div>
-                  <h3>What I am building toward</h3>
-                  <p>
-                    Share what kind of projects you want to create next and what you want people to feel
-                    when they use them.
-                  </p>
-                </div>
-              </article>
+              </div>
+
+              <aside class="fun-fact-panel" aria-live="polite">
+                <p class="eyebrow">Quick fact</p>
+                <p class="fun-fact-text" data-fun-fact>
+                  Outside of coding, I train Brazilian jiu-jitsu.
+                </p>
+                <button class="fun-fact-button" type="button" data-next-fact>Another fact</button>
+              </aside>
             </div>
           </div>
         </section>

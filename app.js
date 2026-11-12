@@ -179,6 +179,25 @@ const projectDetail = document.querySelector("[data-project-detail]");
 const workGrid = document.querySelector("[data-work-grid]");
 const workDetail = document.querySelector("[data-work-detail]");
 const copyEmailButton = document.querySelector("[data-copy-email]");
+const funFactText = document.querySelector("[data-fun-fact]");
+const nextFactButton = document.querySelector("[data-next-fact]");
+const aboutCarousel = document.querySelector("[data-about-carousel]");
+const aboutSlides = document.querySelectorAll("[data-about-slide]");
+const aboutDots = document.querySelectorAll("[data-about-dot]");
+const previousAboutButton = document.querySelector("[data-about-prev]");
+const nextAboutButton = document.querySelector("[data-about-next]");
+
+const funFacts = [
+  "Outside of coding, I train Brazilian jiu-jitsu.",
+  "My family is from Venezuela, and food is one of my favorite ways to stay connected to my culture.",
+  "I enjoy powerlifting and the discipline that comes with getting stronger over time.",
+  "A good day usually includes time with friends or family and something great to eat.",
+  "I play pickleball whenever I get the chance.",
+  "Video games and anime are two of my favorite ways to unwind.",
+];
+
+let activeFactIndex = 0;
+let activeAboutSlide = 0;
 
 function setView(nextView) {
   views.forEach((view) => {
@@ -311,6 +330,22 @@ function initializeSquareSection(items, grid, detail, type) {
   setActiveItem(items, grid, detail, type, 0);
 }
 
+function setAboutSlide(index) {
+  activeAboutSlide = (index + aboutSlides.length) % aboutSlides.length;
+
+  aboutSlides.forEach((slide, slideIndex) => {
+    const isActive = slideIndex === activeAboutSlide;
+    slide.hidden = !isActive;
+    slide.classList.toggle("active", isActive);
+  });
+
+  aboutDots.forEach((dot, dotIndex) => {
+    const isActive = dotIndex === activeAboutSlide;
+    dot.classList.toggle("active", isActive);
+    dot.setAttribute("aria-current", String(isActive));
+  });
+}
+
 viewButtons.forEach((button) => {
   button.addEventListener("click", () => setView(button.dataset.viewButton));
 });
@@ -329,6 +364,26 @@ copyEmailButton.addEventListener("click", async () => {
   }
 });
 
+nextFactButton?.addEventListener("click", () => {
+  activeFactIndex = (activeFactIndex + 1) % funFacts.length;
+  funFactText.textContent = funFacts[activeFactIndex];
+});
+
+previousAboutButton?.addEventListener("click", () => setAboutSlide(activeAboutSlide - 1));
+nextAboutButton?.addEventListener("click", () => setAboutSlide(activeAboutSlide + 1));
+
+aboutDots.forEach((dot) => {
+  dot.addEventListener("click", () => setAboutSlide(Number(dot.dataset.aboutDot)));
+});
+
+aboutCarousel?.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    event.preventDefault();
+    event.stopPropagation();
+    setAboutSlide(activeAboutSlide + (event.key === "ArrowRight" ? 1 : -1));
+  }
+});
+
 document.addEventListener("keydown", (event) => {
   const activeView = document.querySelector(".view.active")?.dataset.view;
 
@@ -343,6 +398,7 @@ document.addEventListener("keydown", (event) => {
 
 initializeSquareSection(projects, projectGrid, projectDetail, "project");
 initializeSquareSection(workItems, workGrid, workDetail, "work");
+setAboutSlide(0);
 
 const initialHash = window.location.hash.replace("#", "");
 if (initialHash && document.querySelector(`[data-view="${initialHash}"]`)) {

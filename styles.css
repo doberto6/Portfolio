@@ -11,7 +11,7 @@
   --brass: #a68a64;
   --slate: #2f3a4a;
   --shadow: 0 28px 90px rgba(13, 17, 23, 0.16);
-  --radius: 8px;
+  --radius: 16px;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -125,7 +125,7 @@ svg {
 .intro-layout,
 .projects-layout,
 .work-layout,
-.journey-layout,
+.about-layout,
 .contact-layout {
   position: relative;
   z-index: 1;
@@ -182,7 +182,7 @@ h3 {
 }
 
 .intro-copy p,
-.journey-intro p,
+.about-heading p,
 .contact-panel p,
 .projects-heading p,
 .work-heading p {
@@ -537,69 +537,206 @@ h3 {
   font-weight: 850;
 }
 
-.journey-layout {
-  grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
-  gap: clamp(1.2rem, 4vw, 4rem);
-  align-items: center;
-  max-width: 1040px;
+.about-layout {
+  gap: 1.4rem;
+  width: min(1080px, 100%);
   margin: 0 auto;
 }
 
-.journey-intro {
-  padding-right: 1rem;
+.about-heading {
+  max-width: 780px;
 }
 
-.journey-track {
-  position: relative;
+.about-content {
   display: grid;
-  gap: 0;
+  grid-template-columns: minmax(0, 1fr) minmax(210px, 0.3fr);
+  gap: 1.4rem;
+  align-items: start;
 }
 
-.journey-track::before {
-  position: absolute;
-  top: 1rem;
-  bottom: 1rem;
-  left: 24px;
-  width: 1px;
-  content: "";
-  background: rgba(13, 17, 23, 0.16);
-}
-
-.journey-entry {
-  position: relative;
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  gap: 1.2rem;
-  padding: 1.2rem 0;
-}
-
-.journey-marker {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  width: 50px;
-  height: 50px;
-  place-items: center;
+.about-carousel {
+  min-width: 0;
+  padding: 0.75rem;
   border: 1px solid var(--line);
-  border-radius: 50%;
-  background: var(--paper);
+  border-radius: 28px 18px 30px 16px;
+  background: rgba(249, 247, 242, 0.76);
+  box-shadow: 0 20px 58px rgba(13, 17, 23, 0.1);
+}
+
+.about-slides {
+  overflow: hidden;
+  border-radius: 22px 14px 24px 12px;
+}
+
+.about-slide {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(260px, 1fr);
+  min-height: 360px;
+  animation: about-slide-in 260ms ease both;
+}
+
+.about-slide[hidden] {
+  display: none;
+}
+
+.about-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+  padding: 1.25rem;
+  border: 1px dashed rgba(13, 17, 23, 0.22);
+  border-radius: 22px 10px 26px 14px;
+  background:
+    linear-gradient(135deg, rgba(37, 49, 67, 0.1), rgba(166, 138, 100, 0.14)),
+    #ece9e1;
+  color: var(--muted);
+}
+
+.about-photo-placeholder span {
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.about-photo-placeholder strong {
+  max-width: 250px;
+  color: var(--ink);
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.about-slide-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.about-slide-number {
+  margin-bottom: auto;
   color: #5f4d35;
   font-size: 0.78rem;
   font-weight: 900;
 }
 
-.journey-entry h3 {
-  margin-bottom: 0.45rem;
-  font-size: clamp(1.35rem, 2.4vw, 2rem);
-  line-height: 1.08;
+.about-slide-copy h3 {
+  max-width: 420px;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1;
 }
 
-.journey-entry p {
-  max-width: 620px;
+.about-slide-copy p {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.7;
+}
+
+.about-carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0.35rem 0.1rem;
+}
+
+.about-carousel-buttons,
+.about-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carousel-arrow {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 14px 10px 15px 9px;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.about-dot {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: 1px solid rgba(13, 17, 23, 0.3);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.about-dot.active {
+  background: var(--ink);
+}
+
+.fun-fact-panel {
+  position: relative;
+  margin-top: 1.1rem;
+  padding: 1.35rem 1.2rem 1.2rem;
+  border: 0;
+  border-radius: 4px 10px 5px 8px;
+  background: #f4dc78;
+  box-shadow: 8px 10px 0 rgba(13, 17, 23, 0.08);
+  transform: rotate(1.4deg);
+}
+
+.fun-fact-panel::before {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 70px;
+  height: 20px;
+  content: "";
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.fun-fact-panel .eyebrow {
+  margin-bottom: 0.45rem;
+  font-size: 0.72rem;
+}
+
+.fun-fact-panel .fun-fact-text {
+  min-height: 6.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--ink);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.fun-fact-button {
+  min-height: 38px;
+  padding: 0 0.78rem;
+  border: 1px solid var(--line);
+  border-radius: 12px 8px 13px 7px;
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.fun-fact-button:focus-visible {
+  outline: 3px solid rgba(166, 138, 100, 0.36);
+  outline-offset: 3px;
+}
+
+@keyframes about-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .note-panel span {
@@ -680,6 +817,34 @@ h3 {
   color: var(--paper);
 }
 
+.panel,
+.dock {
+  border-radius: 22px 14px 24px 12px;
+}
+
+.intro-portrait-card,
+.project-preview,
+.square-tile,
+.detail-panel {
+  border-radius: 20px 12px 22px 14px;
+}
+
+.intro-photo,
+.detail-image {
+  border-radius: 16px 9px 18px 11px;
+}
+
+.button,
+.contact-link,
+.detail-link,
+.intro-links a {
+  border-radius: 14px 9px 15px 10px;
+}
+
+.dock-item {
+  border-radius: 14px 8px 15px 9px;
+}
+
 @media (max-width: 980px) {
   body {
     overflow-x: hidden;
@@ -700,13 +865,17 @@ h3 {
   .intro-layout,
   .projects-layout,
   .work-layout,
-  .journey-layout,
   .contact-layout {
     grid-template-columns: 1fr;
   }
 
-  .journey-intro {
-    padding-right: 0;
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+
+  .fun-fact-panel {
+    width: min(360px, calc(100% - 1rem));
+    margin: 1.25rem auto 0;
   }
 
   .square-grid {
@@ -769,7 +938,25 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .about-slide {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo-placeholder {
+    min-height: 260px;
+  }
+
+  .about-slide-copy {
+    min-height: 300px;
+  }
+
   .square-tile {
     aspect-ratio: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-slide {
+    animation: none;
   }
 }
