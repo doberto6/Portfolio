@@ -2,12 +2,11 @@ const projects = [
   {
     title: "SPOTlight",
     mark: "SL",
-    category: "KnightHacks IX Winner",
+    category: "KnightHacks IX",
+    award: "Hackathon winner",
     summary:
       "Robotic inspection intelligence dashboard that turns SPOT robot inspection data into actionable insights for power plant operators. It includes interactive 3D mission playback, inspection risk heatmaps, sensor trend analysis, prioritized findings, and evidence-backed reports. I also integrated Databricks SQL analytics and Spot Talk, an AI assistant with citations and direct navigation to facility locations, plus an experimental logistic regression pipeline for transparent inspection failure-risk estimates.",
     tags: [
-      "Hackathon winner",
-      "KnightHacks IX",
       "React",
       "Three.js",
       "Node.js",
@@ -200,12 +199,21 @@ let activeFactIndex = 0;
 let activeAboutSlide = 0;
 
 function setView(nextView) {
+  const currentView = document.querySelector(".view.active");
+  const nextSection = Array.from(views).find((view) => view.dataset.view === nextView);
+  const direction = Array.from(views).indexOf(nextSection) < Array.from(views).indexOf(currentView) ? -1 : 1;
+  nextSection.style.setProperty("--page-offset", `${direction * 16}px`);
   views.forEach((view) => {
     view.classList.toggle("active", view.dataset.view === nextView);
   });
 
   viewButtons.forEach((button) => {
-    button.classList.toggle("active", button.dataset.viewButton === nextView);
+    const isActive = button.dataset.viewButton === nextView;
+    button.classList.toggle("active", isActive);
+    if (button.classList.contains("dock-item")) {
+      if (isActive) button.setAttribute("aria-current", "page");
+      else button.removeAttribute("aria-current");
+    }
   });
 
   const nextUrl =
@@ -227,6 +235,8 @@ function renderSquareGrid(items, grid, type) {
           data-${type}-index="${index}"
           style="--tile-color: ${item.color}"
           aria-expanded="${index === 0}"
+          aria-controls="${type === "project" ? "project-details" : "work-details"}"
+          ${type === "work" ? `aria-label="${item.title}: ${item.position}, ${item.duration}"` : ""}
         >
           ${
             type === "project"
@@ -234,9 +244,10 @@ function renderSquareGrid(items, grid, type) {
                 <span class="project-preview-image">
                   ${
                     item.image
-                      ? `<img src="${item.image}" alt="${item.title} screenshot" />`
+                      ? `<img src="${item.image}" alt="" />`
                       : `<span>${item.mark}</span>`
                   }
+                  ${item.award ? `<span class="award-sticker">${item.award}</span>` : ""}
                 </span>
                 <span class="project-preview-meta">
                   <strong>${item.title}</strong>
@@ -251,6 +262,9 @@ function renderSquareGrid(items, grid, type) {
                       : item.mark
                   }
                 </span>
+                ${item.duration === "Incoming" || item.duration.endsWith("Present")
+                  ? `<span class="role-status" aria-hidden="true">${item.duration === "Incoming" ? "Incoming" : "Current"}</span>`
+                  : ""}
                 <span class="experience-hover">
                   <strong>${item.position}</strong>
                   <span>${item.duration}</span>
@@ -271,12 +285,13 @@ function renderDetail(item, detail) {
   detail.innerHTML = `
     ${
       item.image
-        ? `<img class="detail-image" src="${item.image}" alt="${item.title} screenshot" />`
+        ? `<img class="detail-image" src="${item.image}" alt="${item.title} ${item.position ? "logo" : "screenshot"}" />`
         : `<div class="detail-mark">${item.mark}</div>`
     }
     <div>
       <p class="eyebrow">${detailMeta}</p>
       <h3>${item.title}</h3>
+      ${item.award ? `<span class="award-sticker detail-award">${item.award}</span>` : ""}
       ${item.location ? `<p class="detail-location">${item.location}</p>` : ""}
       <p>${item.summary}</p>
       ${
@@ -309,7 +324,14 @@ function renderDetail(item, detail) {
 function bindSquareGrid(items, grid, detail, type) {
   grid.querySelectorAll(`[data-${type}-index]`).forEach((button) => {
     button.addEventListener("click", () => {
-      setActiveItem(items, grid, detail, type, Number(button.dataset[`${type}Index`]));
+      const index = Number(button.dataset[`${type}Index`]);
+      if (!button.classList.contains("active")) {
+        setActiveItem(items, grid, detail, type, index);
+        playPaperMotion(detail, "detail-reveal");
+      }
+      if (detail.getBoundingClientRect().top > window.innerHeight - 80) {
+        detail.scrollIntoView({ block: "start" });
+      }
     });
   });
 }
@@ -331,6 +353,7 @@ function initializeSquareSection(items, grid, detail, type) {
 }
 
 function setAboutSlide(index) {
+  aboutCarousel.style.setProperty("--slide-offset", index < activeAboutSlide ? "-18px" : "18px");
   activeAboutSlide = (index + aboutSlides.length) % aboutSlides.length;
 
   aboutSlides.forEach((slide, slideIndex) => {
@@ -345,6 +368,43 @@ function setAboutSlide(index) {
     dot.setAttribute("aria-current", String(isActive));
   });
 }
+
+function playPaperMotion(element, className) {
+  element.classList.remove(className);
+  void element.offsetWidth;
+  element.classList.add(className);
+}
+
+const currentUpdates = [
+  `${workItems[0].position} at ${workItems[0].title}`,
+  "Building AI and data tools",
+  "Training BJJ and powerlifting",
+];
+let currentUpdateIndex = 0;
+const currentUpdate = document.querySelector("[data-current-update]");
+document.querySelector("[data-next-update]").addEventListener("click", () => {
+  currentUpdateIndex = (currentUpdateIndex + 1) % currentUpdates.length;
+  currentUpdate.textContent = currentUpdates[currentUpdateIndex];
+  playPaperMotion(currentUpdate, "note-flip");
+});
+
+const gameCaptions = {
+  littlebigplanet: "I love how handmade everything feels, from Sackboy to the worlds he runs through. Building your own levels makes it feel like a playground I can help create.",
+  league: "I like how no two matches play out the same way. Figuring out a matchup and pulling off a team fight together is what makes it satisfying.",
+};
+const gameButtons = document.querySelectorAll("[data-game]");
+const gameReaction = document.querySelector("[data-game-reaction]");
+const gameCaption = document.querySelector("[data-game-caption]");
+gameCaption.textContent = gameCaptions.littlebigplanet;
+gameButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const game = button.dataset.game;
+    gameButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+    gameReaction.dataset.mood = game;
+    gameCaption.textContent = gameCaptions[game];
+    playPaperMotion(gameReaction.querySelector(".game-avatar"), "avatar-react");
+  });
+});
 
 viewButtons.forEach((button) => {
   button.addEventListener("click", () => setView(button.dataset.viewButton));
@@ -367,6 +427,7 @@ copyEmailButton.addEventListener("click", async () => {
 nextFactButton?.addEventListener("click", () => {
   activeFactIndex = (activeFactIndex + 1) % funFacts.length;
   funFactText.textContent = funFacts[activeFactIndex];
+  playPaperMotion(funFactText, "note-flip");
 });
 
 previousAboutButton?.addEventListener("click", () => setAboutSlide(activeAboutSlide - 1));
@@ -384,23 +445,40 @@ aboutCarousel?.addEventListener("keydown", (event) => {
   }
 });
 
-document.addEventListener("keydown", (event) => {
-  const activeView = document.querySelector(".view.active")?.dataset.view;
-
-  if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
-    const viewOrder = ["intro", "projects", "work", "story", "contact"];
-    const activeIndex = viewOrder.indexOf(activeView);
-    const direction = event.key === "ArrowRight" ? 1 : -1;
-    const nextIndex = (activeIndex + direction + viewOrder.length) % viewOrder.length;
-    setView(viewOrder[nextIndex]);
+const swipeArea = document.querySelector("[data-swipe-area]");
+let swipeStart;
+swipeArea.addEventListener("touchstart", ({ touches }) => {
+  swipeStart = touches.length === 1 ? touches[0] : null;
+}, { passive: true });
+swipeArea.addEventListener("touchend", ({ changedTouches }) => {
+  if (!swipeStart) return;
+  const dx = changedTouches[0].clientX - swipeStart.clientX;
+  const dy = changedTouches[0].clientY - swipeStart.clientY;
+  if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    setAboutSlide(activeAboutSlide + (dx < 0 ? 1 : -1));
   }
+  swipeStart = null;
+}, { passive: true });
+swipeArea.addEventListener("touchcancel", () => { swipeStart = null; }, { passive: true });
+
+const dock = document.querySelector(".dock");
+const dockButtons = Array.from(dock.querySelectorAll("button"));
+dock.addEventListener("keydown", (event) => {
+  const index = dockButtons.indexOf(event.target);
+  if (index < 0 || !["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
+  event.preventDefault();
+  const direction = event.key === "ArrowRight" ? 1 : -1;
+  const nextIndex = event.key === "Home" ? 0 : event.key === "End" ? dockButtons.length - 1 :
+    (index + direction + dockButtons.length) % dockButtons.length;
+  dockButtons[nextIndex].focus();
+  setView(dockButtons[nextIndex].dataset.viewButton);
 });
 
 initializeSquareSection(projects, projectGrid, projectDetail, "project");
 initializeSquareSection(workItems, workGrid, workDetail, "work");
 setAboutSlide(0);
 
-const initialHash = window.location.hash.replace("#", "");
-if (initialHash && document.querySelector(`[data-view="${initialHash}"]`)) {
+const initialHash = window.location.hash.slice(1);
+if (initialHash && Array.from(views).some((view) => view.dataset.view === initialHash)) {
   setView(initialHash);
 }

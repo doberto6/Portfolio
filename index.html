@@ -17,10 +17,11 @@
   </head>
   <body>
     <main class="portfolio-shell" aria-label="Portfolio studio">
+      <div class="notebook-holes" aria-hidden="true"><span></span><span></span><span></span></div>
       <nav class="dock" aria-label="Portfolio views">
-        <button class="dock-item active" type="button" data-view-button="intro" aria-label="Intro">
+        <button class="dock-item active" type="button" data-view-button="intro" aria-label="Home" aria-current="page">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.2 12 5l8 6.2V20h-6v-5h-4v5H4v-8.8Zm2 .9V18h2v-5h8v5h2v-5.9l-6-4.7-6 4.7Z" /></svg>
-          <span>Intro</span>
+          <span>Home</span>
         </button>
         <button class="dock-item" type="button" data-view-button="projects" aria-label="Projects">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h6v6H5V5Zm8 0h6v6h-6V5ZM5 13h6v6H5v-6Zm8 0h6v6h-6v-6Zm-6-6v2h2V7H7Zm8 0v2h2V7h-2Zm-8 8v2h2v-2H7Zm8 0v2h2v-2h-2Z" /></svg>
@@ -30,9 +31,13 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6V4h8v2h4v14H4V6h4Zm2 0h4V6h-4v0Zm8 2H6v10h12V8Zm-9 3h6v2H9v-2Z" /></svg>
           <span>Work</span>
         </button>
-        <button class="dock-item" type="button" data-view-button="story" aria-label="Story">
+        <button class="dock-item" type="button" data-view-button="story" aria-label="About">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm0 2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11V7a1 1 0 0 0-1-1H7Zm2 3h7v2H9V9Zm0 4h6v2H9v-2Z" /></svg>
-          <span>Story</span>
+          <span>About</span>
+        </button>
+        <button class="dock-item" type="button" data-view-button="extras">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.8 6.1 6.7.8-4.9 4.6 1.4 6.7-6-3.4-6 3.4 1.4-6.7-4.9-4.6 6.7-.8L12 2Z" /></svg>
+          <span>Extras</span>
         </button>
         <button class="dock-item" type="button" data-view-button="contact" aria-label="Contact">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4V6Zm2 2v.4l6 4 6-4V8H6Zm12 2.8-6 4-6-4V16h12v-5.2Z" /></svg>
@@ -44,7 +49,7 @@
         <section class="view active" id="intro" data-view="intro" aria-labelledby="intro-title">
           <div class="intro-layout">
             <div class="intro-copy">
-              <h1 id="intro-title">Diego Oberto</h1>
+              <h1 id="intro-title">Diego <span class="ink-underline">Oberto</span></h1>
               <p>
                 I build clean, thoughtful digital projects with a focus on simplicity, function, and detail.
               </p>
@@ -59,10 +64,14 @@
               </div>
             </div>
 
-            <div class="intro-portrait-card" aria-label="Profile photo placeholder">
+            <figure class="intro-portrait-card">
               <div class="intro-photo">
                 <img src="./assets/headshot.png" alt="Diego Oberto headshot" />
               </div>
+            </figure>
+            <div class="currently-note">
+              <button type="button" data-next-update aria-label="Currently: show another update">Currently <span aria-hidden="true">&#8635;</span></button>
+              <p data-current-update aria-live="polite">Incoming Software Engineer at Pinterest</p>
             </div>
           </div>
         </section>
@@ -70,27 +79,23 @@
         <section class="view" id="projects" data-view="projects" aria-labelledby="projects-title">
           <div class="projects-layout">
             <div class="projects-heading">
-              <p class="eyebrow">Projects</p>
-              <h2 id="projects-title">Click a project to open the details.</h2>
+              <p class="eyebrow">01 / Project notebook</p>
+              <h2 id="projects-title">Things I've built</h2>
             </div>
             <div class="project-strip" data-project-grid></div>
-            <article class="detail-panel" data-project-detail aria-live="polite"></article>
+            <article class="detail-panel" id="project-details" data-project-detail aria-live="polite"></article>
           </div>
         </section>
 
         <section class="view" id="work" data-view="work" aria-labelledby="work-title">
           <div class="work-layout">
             <div class="work-heading">
-              <p class="eyebrow">Work</p>
-              <h2 id="work-title">Experience cards for the places you have worked.</h2>
-              <p>
-                Drop in each company logo later. Hover shows the role and dates, then click a card to
-                open the fuller story.
-              </p>
+              <p class="eyebrow">02 / Work notebook</p>
+              <h2 id="work-title">Experience</h2>
             </div>
 
             <div class="square-grid" data-work-grid></div>
-            <article class="detail-panel" data-work-detail aria-live="polite"></article>
+            <article class="detail-panel" id="work-details" data-work-detail aria-live="polite"></article>
           </div>
         </section>
 
@@ -108,7 +113,7 @@
 
             <div class="about-content">
               <div class="about-carousel" data-about-carousel>
-                <div class="about-slides" aria-live="polite">
+                <div class="about-slides" data-swipe-area aria-live="polite">
                   <article class="about-slide active" data-about-slide>
                     <div class="about-photo-placeholder" aria-label="Photo placeholder for two paths">
                       <span>Photo 01</span>
@@ -142,17 +147,16 @@
                   </article>
 
                   <article class="about-slide" data-about-slide hidden>
-                    <div class="about-photo-placeholder" aria-label="Photo placeholder for life outside coding">
+                    <div class="about-photo-placeholder" aria-label="Photo placeholder for family roots">
                       <span>Photo 03</span>
-                      <strong>Life outside the screen</strong>
+                      <strong>Family and Venezuela</strong>
                     </div>
                     <div class="about-slide-copy">
                       <span class="about-slide-number">03 / 03</span>
-                      <h3>Beyond the screen</h3>
+                      <h3>My roots</h3>
                       <p>
-                        When I am not building, I am usually eating good food, spending time with
-                        friends and family, playing video games, watching anime, training BJJ, playing
-                        pickleball, or powerlifting.
+                        My family is from Venezuela. Sharing good food and spending time with
+                        family and friends are some of my favorite ways to stay connected.
                       </p>
                     </div>
                   </article>
@@ -171,9 +175,92 @@
                 </div>
               </div>
 
-              <aside class="fun-fact-panel" aria-live="polite">
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="extras" data-view="extras" aria-labelledby="extras-title">
+          <div class="about-layout">
+            <header class="about-heading">
+              <p class="eyebrow">Extras</p>
+              <h2 id="extras-title">Favorite hobbies</h2>
+            </header>
+            <section class="fighter-feature" aria-labelledby="fighter-title">
+              <figure>
+                <img src="./assets/charles-oliveira.png" width="399" height="501" alt="Charles Oliveira raises both arms in the Octagon" />
+                <figcaption>Ed Mulholland / Zuffa LLC</figcaption>
+              </figure>
+              <div>
+                <p class="eyebrow">UFC / My favorite fighter</p>
+                <h3 id="fighter-title">Charles Oliveira</h3>
+                <p>Charles &ldquo;Do Bronxs&rdquo; Oliveira is my favorite UFC fighter. He grew up in a family of modest means in Guaruj&aacute;, Brazil, and faced health challenges as a kid. At 12, a community program introduced him to Brazilian jiu-jitsu, which set him on the path to becoming UFC lightweight champion.</p>
+                <p>His story goes beyond the title. He started his own program in Guaruj&aacute; to give local kids the same chance to train that he had.</p>
+                <a href="https://www.ufc.com/news/charles-oliveira-named-2025-recipient-forrest-griffin-community-award">Read more about his work in Guaruj&aacute;</a>
+              </div>
+            </section>
+            <section class="favorites" aria-labelledby="favorites-title">
+              <div>
+                <h3 id="favorites-title">My two favorite games</h3>
+                <div class="game-options" role="group" aria-label="Favorite games">
+                  <button type="button" data-game="littlebigplanet" aria-pressed="true">
+                    <img src="./assets/littlebigplanet.png" width="597" height="335" alt="" />
+                    <span>LittleBigPlanet</span>
+                  </button>
+                  <button type="button" data-game="league" aria-pressed="false">
+                    <img src="./assets/league-of-legends.png" width="738" height="411" alt="" />
+                    <span>League of Legends</span>
+                  </button>
+                </div>
+              </div>
+              <div class="game-reaction" data-game-reaction data-mood="littlebigplanet">
+                <div class="game-avatar" aria-hidden="true">
+                  <svg viewBox="0 0 112 96" fill="none">
+                    <path d="M19 88c1-16 14-25 37-25s36 9 37 25" fill="var(--game-color)" stroke="#202824" stroke-width="3" />
+                    <path d="M27 39c0-20 12-31 29-31s29 11 29 31v12c0 16-13 26-29 26S27 67 27 51Z" fill="#efbc91" stroke="#202824" stroke-width="3" />
+                    <path d="M27 43c-5-8-4-25 3-31 6-6 12-4 14-9 6 3 18 1 27 5 13 4 18 15 14 31-8-6-10-15-15-20-12 14-30 4-43 24Z" fill="#322a26" />
+                    <g class="avatar-face face-competitive" fill="none" stroke="#202824" stroke-width="3" stroke-linecap="round"><path d="m39 42 9 3m25-3-9 3M42 50v2m28-2v2m-21 11c4-3 9-3 13 0"/></g>
+                    <g class="avatar-face face-cozy" fill="none" stroke="#202824" stroke-width="3" stroke-linecap="round"><path d="M38 50q5-6 10 0m16 0q5-6 10 0M50 59q6 8 12 0"/></g>
+                  </svg>
+                </div>
+                <div><h4>Why I like it</h4><p data-game-caption aria-live="polite"></p></div>
+              </div>
+            </section>
+            <section class="anime-section" aria-labelledby="anime-title">
+              <h3 id="anime-title">Favorite anime</h3>
+              <ul class="anime-shelf">
+                <li><details>
+                  <summary>
+                  <img src="./assets/one-piece.png" width="738" height="414" loading="lazy" alt="Luffy smiling in his straw hat" />
+                  <span>One Piece</span>
+                  </summary>
+                  <p>I love the sense of adventure, but what keeps me coming back is the Straw Hats. Even when the world gets bigger, it still feels like a story about friends chasing their dreams together.</p>
+                </details></li>
+                <li><details>
+                  <summary>
+                  <img src="./assets/black-clover.png" width="452" height="678" loading="lazy" alt="Asta and the Black Bulls gathered in front of stone ruins" />
+                  <span>Black Clover</span>
+                  </summary>
+                  <p>I like watching Asta keep showing up in a world that tells him he has no chance. The Black Bulls are a bunch of misfits, and seeing them learn to count on each other makes their wins feel earned.</p>
+                </details></li>
+                <li><details>
+                  <summary>
+                  <img src="./assets/my-hero-academia.png" width="452" height="678" loading="lazy" alt="Deku, All Might, and the other heroes against a yellow backdrop" />
+                  <span>My Hero Academia</span>
+                  </summary>
+                  <p>What I like about Deku is that he wants to help before he has any power to back it up. Watching him grow into a hero makes the big fights mean more.</p>
+                </details></li>
+              </ul>
+            </section>
+            <div class="extras-content">
+              <dl class="interest-list">
+                <div><dt>Powerlifting</dt><dd>I enjoy training for strength and seeing progress over time.</dd></div>
+                <div><dt>Brazilian jiu-jitsu</dt><dd>I train BJJ when I can get on the mats.</dd></div>
+                <div><dt>Pickleball</dt><dd>I play whenever I get the chance.</dd></div>
+                <div><dt>Food &amp; family</dt><dd>Good food is even better with friends and family around.</dd></div>
+              </dl>
+              <aside class="fun-fact-panel">
                 <p class="eyebrow">Quick fact</p>
-                <p class="fun-fact-text" data-fun-fact>
+                <p class="fun-fact-text" data-fun-fact aria-live="polite">
                   Outside of coding, I train Brazilian jiu-jitsu.
                 </p>
                 <button class="fun-fact-button" type="button" data-next-fact>Another fact</button>
@@ -184,7 +271,7 @@
 
         <section class="view" id="contact" data-view="contact" aria-labelledby="contact-title">
           <div class="contact-layout">
-            <div class="panel contact-panel">
+            <div class="contact-panel">
               <p class="eyebrow">Contact</p>
               <h2 id="contact-title">Let’s connect.</h2>
               <p>
@@ -196,10 +283,7 @@
                 <a class="contact-link secondary" href="https://github.com/doberto6" target="_blank" rel="noreferrer">GitHub</a>
                 <button class="button ghost" type="button" data-copy-email>Copy email</button>
               </div>
-            </div>
-            <div class="panel note-panel">
-              <span>Open to</span>
-              <p>Software engineering internships, AI tooling work, and thoughtful technical projects.</p>
+              <p class="contact-signoff">Talk soon,<br />Diego</p>
             </div>
           </div>
         </section>
