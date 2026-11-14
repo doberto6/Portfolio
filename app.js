@@ -74,9 +74,9 @@ const workItems = [
     category: "Experience",
     position: "Incoming Software Engineer",
     duration: "Incoming",
-    location: "Seattle, Washington",
+    location: "San Francisco, California",
     summary:
-      "Incoming software engineer at Pinterest in Seattle, Washington. More details about the team and work will be added once the role begins.",
+      "Incoming software engineer at Pinterest in San Francisco, California. More details about the team and work will be added once the role begins.",
     tags: ["Software engineering", "Incoming", "Pinterest"],
     color: "#e60023",
     image: "./assets/pinterest.png",
@@ -391,6 +391,8 @@ document.querySelector("[data-next-update]").addEventListener("click", () => {
 const gameCaptions = {
   littlebigplanet: "I love how handmade everything feels, from Sackboy to the worlds he runs through. Building your own levels makes it feel like a playground I can help create.",
   league: "I like how no two matches play out the same way. Figuring out a matchup and pulling off a team fight together is what makes it satisfying.",
+  fortnite: "I like how Fortnite can be competitive one night and completely chaotic the next. Building, exploring, and playing with friends makes every match feel different.",
+  terraria: "I like that I can spend one session building a base and the next exploring caves or taking on a boss. There’s always something new to find.",
 };
 const gameButtons = document.querySelectorAll("[data-game]");
 const gameReaction = document.querySelector("[data-game-reaction]");
@@ -404,6 +406,76 @@ gameButtons.forEach((button) => {
     gameCaption.textContent = gameCaptions[game];
     playPaperMotion(gameReaction.querySelector(".game-avatar"), "avatar-react");
   });
+});
+
+const fighterDetails = {
+  charles: {
+    title: "Charles Oliveira",
+    description: "Charles “Do Bronxs” Oliveira is my favorite UFC fighter. He grew up in a family of modest means in Guarujá, Brazil, and faced health challenges as a kid. At 12, a community program introduced him to Brazilian jiu-jitsu, which set him on the path to becoming UFC lightweight champion.",
+    extra: "His story goes beyond the title. He started his own program in Guarujá to give local kids the same chance to train that he had.",
+    link: "https://www.ufc.com/news/charles-oliveira-named-2025-recipient-forrest-griffin-community-award",
+    linkText: "Read more about his work in Guarujá",
+  },
+  ilia: {
+    title: "Ilia Topuria",
+    description: "I like Ilia Topuria because of his confidence, precision, and pressure in the Octagon. His undefeated rise and championship performances show how preparation and belief can turn big moments into defining ones.",
+    extra: "Watching his boxing and submission game come together is a big part of what makes his fights so exciting.",
+    link: "https://www.ufc.com/athlete/ilia-topuria",
+    linkText: "See Ilia Topuria on UFC.com",
+  },
+};
+const fighterButtons = document.querySelectorAll("[data-fighter]");
+const fighterTitle = document.querySelector("#fighter-title");
+const fighterDescription = document.querySelector("[data-fighter-description]");
+const fighterExtra = document.querySelector("[data-fighter-description-extra]");
+const fighterLink = document.querySelector("[data-fighter-link]");
+fighterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const fighter = fighterDetails[button.dataset.fighter];
+    fighterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+    fighterTitle.textContent = fighter.title;
+    fighterDescription.textContent = fighter.description;
+    fighterExtra.textContent = fighter.extra;
+    fighterLink.href = fighter.link;
+    fighterLink.textContent = fighter.linkText;
+  });
+});
+
+const hobbyJournal = document.querySelector("[data-hobby-journal]");
+const hobbyStickers = [...hobbyJournal.querySelectorAll(".hobby-sticker")];
+const hobbyPages = hobbyJournal.querySelector("[data-hobby-pages]");
+const hobbyClose = hobbyJournal.querySelector("[data-hobby-close]");
+let openHobbySticker = null;
+
+function showHobby(sticker) {
+  openHobbySticker = sticker;
+  hobbyPages.hidden = !sticker;
+  hobbyJournal.classList.toggle("has-open-entry", Boolean(sticker));
+  hobbyStickers.forEach((button) => {
+    const entry = document.getElementById(button.getAttribute("aria-controls"));
+    const isOpen = button === sticker;
+    button.setAttribute("aria-expanded", String(isOpen));
+    entry.hidden = !isOpen;
+    if (isOpen) playPaperMotion(entry, "detail-reveal");
+  });
+}
+
+function closeHobby() {
+  if (!openHobbySticker) return;
+  const previous = openHobbySticker;
+  showHobby(null);
+  previous.focus();
+}
+
+hobbyStickers.forEach((button) => {
+  button.addEventListener("click", () => showHobby(button === openHobbySticker ? null : button));
+});
+hobbyClose.addEventListener("click", closeHobby);
+hobbyJournal.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && openHobbySticker) {
+    event.preventDefault();
+    closeHobby();
+  }
 });
 
 viewButtons.forEach((button) => {

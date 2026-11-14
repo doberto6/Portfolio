@@ -8,6 +8,7 @@ A static portfolio styled as a personal notebook for projects, work, and persona
 - Update the intro and About copy in `index.html`.
 - To add an About photo, save it in `assets/` and replace the text inside the matching `.about-photo-placeholder` with an `<img src="./assets/your-photo.jpg" alt="Describe the photo" />`. Keep the wrapper for the taped print styling.
 - Edit the Extras features and game artwork in `index.html`. Game descriptions are in `gameCaptions` in `app.js`; keep the `data-game` values unless you also update the captions and avatar styles.
+- To add a hobby photo, save it in `assets/` and replace the text inside the matching `.hobby-photo` in `index.html` with an `<img src="./assets/your-photo.jpg" alt="Describe the photo" />`.
 - Add your project details in the `projects` array inside `app.js`.
 - Replace or update `assets/headshot.png` when you want to change the home page photo.
 - Update the contact email in both `index.html` and `app.js` when it changes.

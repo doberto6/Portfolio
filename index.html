@@ -186,21 +186,27 @@
               <h2 id="extras-title">Favorite hobbies</h2>
             </header>
             <section class="fighter-feature" aria-labelledby="fighter-title">
-              <figure>
-                <img src="./assets/charles-oliveira.png" width="399" height="501" alt="Charles Oliveira raises both arms in the Octagon" />
-                <figcaption>Ed Mulholland / Zuffa LLC</figcaption>
-              </figure>
+              <div class="fighter-options" role="group" aria-label="Favorite UFC fighters">
+                <button type="button" class="fighter-card" data-fighter="charles" aria-pressed="true">
+                  <img src="./assets/charles-oliveira.png" width="399" height="501" alt="Charles Oliveira raises both arms in the Octagon" />
+                  <span>Charles Oliveira</span>
+                </button>
+                <button type="button" class="fighter-card" data-fighter="ilia" aria-pressed="false">
+                  <img src="./assets/ilia-topuria.png" width="447" height="447" alt="Ilia Topuria holding championship belts in the Octagon" />
+                  <span>Ilia Topuria</span>
+                </button>
+              </div>
               <div>
-                <p class="eyebrow">UFC / My favorite fighter</p>
+                <p class="eyebrow">Watching UFC</p>
                 <h3 id="fighter-title">Charles Oliveira</h3>
-                <p>Charles &ldquo;Do Bronxs&rdquo; Oliveira is my favorite UFC fighter. He grew up in a family of modest means in Guaruj&aacute;, Brazil, and faced health challenges as a kid. At 12, a community program introduced him to Brazilian jiu-jitsu, which set him on the path to becoming UFC lightweight champion.</p>
-                <p>His story goes beyond the title. He started his own program in Guaruj&aacute; to give local kids the same chance to train that he had.</p>
-                <a href="https://www.ufc.com/news/charles-oliveira-named-2025-recipient-forrest-griffin-community-award">Read more about his work in Guaruj&aacute;</a>
+                <p data-fighter-description>Charles &ldquo;Do Bronxs&rdquo; Oliveira is my favorite UFC fighter. He grew up in a family of modest means in Guaruj&aacute;, Brazil, and faced health challenges as a kid. At 12, a community program introduced him to Brazilian jiu-jitsu, which set him on the path to becoming UFC lightweight champion.</p>
+                <p data-fighter-description-extra>His story goes beyond the title. He started his own program in Guaruj&aacute; to give local kids the same chance to train that he had.</p>
+                <a data-fighter-link href="https://www.ufc.com/news/charles-oliveira-named-2025-recipient-forrest-griffin-community-award">Read more about his work in Guaruj&aacute;</a>
               </div>
             </section>
             <section class="favorites" aria-labelledby="favorites-title">
               <div>
-                <h3 id="favorites-title">My two favorite games</h3>
+                <h3 id="favorites-title">My favorite games</h3>
                 <div class="game-options" role="group" aria-label="Favorite games">
                   <button type="button" data-game="littlebigplanet" aria-pressed="true">
                     <img src="./assets/littlebigplanet.png" width="597" height="335" alt="" />
@@ -209,6 +215,14 @@
                   <button type="button" data-game="league" aria-pressed="false">
                     <img src="./assets/league-of-legends.png" width="738" height="411" alt="" />
                     <span>League of Legends</span>
+                  </button>
+                  <button type="button" data-game="fortnite" aria-pressed="false">
+                    <img src="./assets/fortnite.png" width="738" height="414" alt="" />
+                    <span>Fortnite</span>
+                  </button>
+                  <button type="button" data-game="terraria" aria-pressed="false">
+                    <img src="./assets/terraria.png" width="590" height="338" alt="" />
+                    <span>Terraria</span>
                   </button>
                 </div>
               </div>
@@ -251,21 +265,78 @@
                 </details></li>
               </ul>
             </section>
-            <div class="extras-content">
-              <dl class="interest-list">
-                <div><dt>Powerlifting</dt><dd>I enjoy training for strength and seeing progress over time.</dd></div>
-                <div><dt>Brazilian jiu-jitsu</dt><dd>I train BJJ when I can get on the mats.</dd></div>
-                <div><dt>Pickleball</dt><dd>I play whenever I get the chance.</dd></div>
-                <div><dt>Food &amp; family</dt><dd>Good food is even better with friends and family around.</dd></div>
-              </dl>
-              <aside class="fun-fact-panel">
-                <p class="eyebrow">Quick fact</p>
-                <p class="fun-fact-text" data-fun-fact aria-live="polite">
-                  Outside of coding, I train Brazilian jiu-jitsu.
-                </p>
-                <button class="fun-fact-button" type="button" data-next-fact>Another fact</button>
-              </aside>
-            </div>
+            <section class="life-section" aria-labelledby="life-title">
+              <h3 id="life-title">Life outside the screen</h3>
+              <p class="life-intro">Pick a sticker to open a page from my notebook.</p>
+              <div class="extras-content">
+                <div class="hobby-journal" data-hobby-journal>
+                  <div class="hobby-strip" role="group" aria-label="Hobby journal entries">
+                    <button class="hobby-sticker hobby-lifting" type="button" aria-controls="hobby-lifting" aria-expanded="false">
+                      <svg viewBox="0 0 48 40" aria-hidden="true"><path d="M15 20h18M5 20h3m32 0h3M8 14v12m32-12v12M15 10v20m18-20v20" /></svg>
+                      <span>Powerlifting</span>
+                    </button>
+                    <button class="hobby-sticker hobby-bjj" type="button" aria-controls="hobby-bjj" aria-expanded="false">
+                      <svg viewBox="0 0 48 40" aria-hidden="true"><path d="M19 17c-5-1-9-3-14-3v6c4 0 8 1 13 3m10-6c6-1 10-3 15-3v6c-5 0-9 2-14 3M19 17l5-3 5 4-1 7-6 1-4-4zM21 25l-7 10 6 1 5-9m2-2 8 8 4-4-10-7" /></svg>
+                      <span>Brazilian jiu-jitsu</span>
+                    </button>
+                    <button class="hobby-sticker hobby-pickleball" type="button" aria-controls="hobby-pickleball" aria-expanded="false">
+                      <svg viewBox="0 0 48 40" aria-hidden="true"><path d="m12 24-6 8a2.5 2.5 0 0 0 4 3l7-8 6-1c2 0 4-2 6-4l5-7c2-3 1-6-2-8l-4-3c-3-2-6-1-8 2l-6 7c-2 3-3 6-2 11zM12 24l5 3" /><circle cx="38" cy="29" r="6" /><path d="M36 27h.1m4 3h.1" /></svg>
+                      <span>Pickleball</span>
+                    </button>
+                    <button class="hobby-sticker hobby-family" type="button" aria-controls="hobby-family" aria-expanded="false">
+                      <svg viewBox="0 0 48 40" aria-hidden="true"><circle cx="24" cy="20" r="13" /><path d="M24 25s-7-4-5-8c1-2 4-2 5 1 1-3 4-3 5-1 2 4-5 8-5 8zM5 10v9m3-9v6c0 2-1 3-3 3s-3-1-3-3v-6m3 9v12m37-1V10c-3 3-4 7-4 11h4" /></svg>
+                      <span>Food &amp; family</span>
+                    </button>
+                  </div>
+                  <div class="hobby-pages" data-hobby-pages hidden>
+                    <article class="hobby-entry hobby-lifting" id="hobby-lifting" hidden>
+                      <div>
+                        <h4>Powerlifting</h4>
+                        <p>I like that I can see progress over time. A lift that used to feel heavy starts to move a little better, and that’s a good reason to come back next week.</p>
+                        <p class="hobby-margin-note">Small gains count.</p>
+                      </div>
+                      <div class="hobby-photo">
+                        <img src="./assets/powerlifting.png" alt="Diego with a loaded barbell across his shoulders at the squat rack" loading="lazy" />
+                      </div>
+                    </article>
+                    <article class="hobby-entry hobby-bjj" id="hobby-bjj" hidden>
+                      <div>
+                        <h4>Brazilian jiu-jitsu</h4>
+                        <p>What I like about BJJ is the problem-solving. On the mats, staying patient and noticing one small detail can make a bigger difference than trying harder.</p>
+                        <p class="hobby-margin-note">Stay curious on the mats.</p>
+                      </div>
+                      <div class="hobby-photo">Training photo to come</div>
+                    </article>
+                    <article class="hobby-entry hobby-pickleball" id="hobby-pickleball" hidden>
+                      <div>
+                        <h4>Pickleball</h4>
+                        <p>I play whenever I get the chance. It’s easy to pick up with friends, and a casual rally can turn competitive pretty quickly.</p>
+                        <p class="hobby-margin-note">There’s always time for one more game.</p>
+                      </div>
+                      <div class="hobby-photo">Court photo to come</div>
+                    </article>
+                    <article class="hobby-entry hobby-family" id="hobby-family" hidden>
+                      <div>
+                        <h4>Food &amp; family</h4>
+                        <p>My family is from Venezuela, and sharing a meal is one of my favorite ways to spend time with them. Good food is even better when there’s time to sit around and talk.</p>
+                        <p class="hobby-margin-note">The best part is who’s at the table.</p>
+                      </div>
+                      <div class="hobby-photo">
+                        <img src="./assets/food-and-family.png" alt="A plate of loaded fries with two cups of dipping sauce" loading="lazy" />
+                      </div>
+                    </article>
+                    <button class="hobby-close" type="button" data-hobby-close>Close entry <span aria-hidden="true">×</span></button>
+                  </div>
+                </div>
+                <aside class="fun-fact-panel">
+                  <p class="eyebrow">Quick fact</p>
+                  <p class="fun-fact-text" data-fun-fact aria-live="polite">
+                    Outside of coding, I train Brazilian jiu-jitsu.
+                  </p>
+                  <button class="fun-fact-button" type="button" data-next-fact>Another fact</button>
+                </aside>
+              </div>
+            </section>
           </div>
         </section>
 
